@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "939380920848",
+    "project_id": "movcomp-nsss",
+    "storage_bucket": "movcomp-nsss.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939380920848:android:35b7adabf53093be817095",
+        "android_client_info": {
+          "package_name": "com.example.movcompnsss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "939380920848-98kvu6gbq6e6ttn3evni63pmg2m9grsk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTggac5bPCDoxEqxpB39MK-JOBPJuMaL8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "939380920848-98kvu6gbq6e6ttn3evni63pmg2m9grsk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
