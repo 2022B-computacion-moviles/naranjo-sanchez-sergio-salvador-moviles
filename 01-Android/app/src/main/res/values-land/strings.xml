@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-    <string name="app_name">MovCompNSSS</string>
     <string name="hola_mundo">Hola Mundo</string>
     <color name="color_hola_mundo">#1AA870</color>
 </resources>
