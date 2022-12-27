@@ -1,9 +1,7 @@
 import java.io.File
 import java.io.InputStream
 import java.time.LocalDate
-import java.time.Month
 import java.util.*
-import kotlin.collections.ArrayList
 
 fun main(args: Array<String>){
     println("Hola mundo examen")
@@ -37,12 +35,17 @@ fun main(args: Array<String>){
             1 -> mostrar()
             2 -> escribir()
             3 -> modificar()
-            4 -> println("Esto es Eliminar")
+            4 -> eliminar()
             5 -> control = false
             else -> {
                 println("Ninguna opcion correcta seleccionada")
                 control = false
             }
+        }
+        println("Desea Continuar: (y/n)")
+        val cont = readln().toString()
+        if (cont == "n"){
+            control = false
         }
     }
 }
@@ -93,10 +96,111 @@ fun escribir(){
 }
 
 fun modificar(){
+    //Mostrar los registros
     val id = mostrar()
+    //sacar el valor a mostrar
     println("Codigo de registro de Auto a modificar: ")
-    val marca = readln().toString()
-    println("El codigo de Auto ingresado es 5")
+    val idmod = readln().toInt()
+
+
+    //Traer los objetos para procesarlos
+    val inputStream: InputStream = File("resources/bd.txt").inputStream()
+    val lineas = mutableListOf<String>()
+    inputStream.bufferedReader().useLines { lines -> lines.forEach { lineas.add(it) } }
+    var lineaProcesar = lineas[idmod-1]
+    var partsOne = lineaProcesar.split(',','=')
+
+    //Generar el nuevo auto
+    val fecha = LocalDate.parse(partsOne[7])
+    val auto: Auto = Auto(partsOne[11].toInt(), partsOne[13], partsOne[15].toDouble(), partsOne[17].toDouble(),partsOne[19].toBoolean(),partsOne[1].toInt(),partsOne[3],partsOne[5],fecha,partsOne[9])
+
+
+    //Mostrar opciones para actualizacion
+    println("Que desea Actualizar:")
+    println("1.-Id Auto")
+    println("2.-Modelo de Auto")
+    println("3.-Cilindraje de motor")
+    println("4.-Precio")
+    println("5.-Disponibilidad")
+    val seleccion = readln().toInt()
+    when(seleccion){
+        1 -> {
+            println("Nuevo Id: ")
+            val idnuevo = readln().toInt()
+            auto.setIdAuto(idnuevo)
+        }
+        2 -> {
+            println("Nuevo Modelo: ")
+            val modelonuevo = readln().toString()
+            auto.setModelo(modelonuevo)
+        }
+        3 -> {
+            println("Nuevo Cilindraje de motor: ")
+            val cilnuevo = readln().toDouble()
+            auto.setCilindraje(cilnuevo)
+        }
+        4 -> {
+            println("Nuevo Precio: ")
+            val precionuevo = readln().toDouble()
+            auto.setPrecio(precionuevo)
+        }
+        5 -> {
+            println("Disponibilidad: ")
+            val idispnuevo = readln().toBoolean()
+            auto.setDisponible(idispnuevo)
+        }
+        else -> {
+            println("No se selecciono una opcion valida")
+        }
+    }
+
+    //Eliminar registro anterior
+    var lista2 = ""
+    var count = 1
+    lineas.forEach {
+        if ( count != idmod){
+            lista2 += it+"\n"
+        }
+        count++
+    }
+    println("Lista nueva:  \n$lista2")
+    //Reescribir el archivo txt
+    File("resources/bd.txt").writeText(lista2)
+
+
+    //Actualizar registro
+    val dat = auto.toString()
+    //Guardar datos
+    val bd = File("resources/bd.txt")
+    bd.appendText(dat.toString())
+    bd.appendText("\n")
+
+    println("Registro Actualizado: \n$auto")
+}
+
+fun eliminar(){
+    //Mostrar los registros
+    val id = mostrar()
+    //sacar el valor a mostrar
+    println("Codigo de registro de Auto a Eliminar: ")
+    val idmod = readln().toInt()
+    //Traer todos los datos
+    //Traer los objetos para procesarlos
+    val inputStream: InputStream = File("resources/bd.txt").inputStream()
+    val lineas = mutableListOf<String>()
+    inputStream.bufferedReader().useLines { lines -> lines.forEach { lineas.add(it) } }
+    //Bucle para eliminar
+    var lista2 = ""
+    var count = 1
+    lineas.forEach {
+        if ( count != idmod){
+            lista2 += it+"\n"
+        }
+        count++
+    }
+    println("Lista nueva:  \n$lista2")
+    //Reescribir el archivo txt
+    File("resources/bd.txt").writeText(lista2)
 }
 open class MarcaAuto(
     private var idMarca: Int, //Propiedad
