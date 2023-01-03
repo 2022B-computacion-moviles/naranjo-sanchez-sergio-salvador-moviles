@@ -14,6 +14,12 @@ class MainActivity : AppCompatActivity() {
             .setOnClickListener {
                 irActividad(ACicloVida::class.java)
             }
+        val botonListView = findViewById<Button>(R.id.btn_ir_list_view)
+        botonCicloVida
+            .setOnClickListener {
+                irActividad(ACicloVida::class.java)
+            }
+
     }
 
     fun irActividad(

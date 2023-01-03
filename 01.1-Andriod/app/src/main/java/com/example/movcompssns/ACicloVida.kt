@@ -1,6 +1,7 @@
 package com.example.movcompssns
 
 import android.os.Bundle
+import android.os.PersistableBundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -34,7 +35,7 @@ class ACicloVida : AppCompatActivity() {
 
         //mostrar
         mostrarSnackbar("OnCreate")
-    }
+    }//Final bloque codigo  onCreate
 
     override fun onStart() {
         super.onStart()
@@ -62,6 +63,24 @@ class ACicloVida : AppCompatActivity() {
         mostrarSnackbar("OnPause")
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.run {
+            //gUardar variables
+            //Primitivos
+            putString("textoGuardado", textoGlobal)
+        }
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val textoRecuperado:String? = savedInstanceState.getString("textoGuardado")
+        //val textoRecuperado:Int? = savedInstanceState.getInt("numeroGuardado")
+        if(textoRecuperado != null){
+            mostrarSnackbar(textoRecuperado)
+            textoGlobal = textoRecuperado
+        }
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_aciclo_vida)
