@@ -22,6 +22,12 @@
         <activity
             android:name=".CIntentExplicitParametros"
             android:exported="false">
+            <intent-filter>
+                <!-- android:exported="true">  para que sea visible -->
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
