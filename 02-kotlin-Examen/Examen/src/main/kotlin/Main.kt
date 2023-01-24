@@ -4,8 +4,6 @@ import java.time.LocalDate
 import java.util.*
 
 fun main(args: Array<String>){
-    println("Hola mundo examen")
-
     val fecha = LocalDate.parse("2018-12-12")
     val marca: MarcaAuto = MarcaAuto(1, "Chevrolet", "USA", fecha, "Juan Perez")
     println(marca.toString())
@@ -19,7 +17,6 @@ fun main(args: Array<String>){
     println(inputString)
 
     //Hilo principal
-
     //cambiar control para iniciar
     var control = true
     while (control){
