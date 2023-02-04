@@ -9,5 +9,7 @@ open class BMarca(
     private var fundacion: LocalDate,
     private var creador: String
 ) {
-
+    override fun toString(): String {
+        return super.toString()
+    }
 }
