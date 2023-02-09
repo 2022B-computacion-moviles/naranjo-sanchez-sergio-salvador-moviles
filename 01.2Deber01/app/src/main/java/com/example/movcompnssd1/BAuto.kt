@@ -11,7 +11,7 @@ class BAuto(
     idMarca: Int, //Propiedad
     nombre: String,
     pais: String,
-    fundacion: LocalDate,
+    fundacion: Int,
     creador: String,
 ):BMarca(
     idMarca,
