@@ -14,8 +14,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //crear base de datos
+
+
         //Llamada a la lista marcas
-        val arreglo:ArrayList<BMarca> = BBaseDatosMarca.arregloBMarca
+        val arreglo = ESqliteHelper(this).consultarElementos()
+        
         val listView = findViewById<ListView>(R.id.lv_list_view_entrenador)
         val adaptador  = ArrayAdapter(
             this, //contexto
