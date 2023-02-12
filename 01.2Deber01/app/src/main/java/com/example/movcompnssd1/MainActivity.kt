@@ -5,26 +5,22 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.ContextMenu
-import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ListView
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
     var idItemSeleccionado = 0
-
+    var idNombre = ""
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //Crear lista
 
         //Llamada a la lista marcas
         val arreglo = ESqliteHelper(this).consultarElementos()
@@ -56,43 +52,37 @@ class MainActivity : AppCompatActivity() {
     //Funciones del menu desplegable
     override fun onCreateContextMenu(
         menu: ContextMenu?,
-        v: View?,
+        v: View,
         menuInfo: ContextMenu.ContextMenuInfo?
     ) {
         super.onCreateContextMenu(menu, v, menuInfo)
         //llenamos las opciones del menu
-        val inflater = menuInflater
+        val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menumarca, menu)
+
         //Obtener el id del ArrayList selecionado
         val info = menuInfo as AdapterView.AdapterContextMenuInfo
         val id = info.position
         idItemSeleccionado = id
+
+        //Obtener el nombre del item Selecionado
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
+        //Crear arreglo
+        val arreglo = ESqliteHelper(this).consultarElementos()
         return when (item.itemId) {
             R.id.editar_marca -> {
-                println("Estoy aqui")
-                "${idItemSeleccionado}"
+                println("Estoy aqui en Editar Marca")
+                //Crear intent y pasar el indice a otra actividad
+                val intent = Intent(this@MainActivity, EditarMarca::class.java)
+                intent.putExtra("idMarca", arreglo[idItemSeleccionado].idMarca)
+                //Iniciar Editar
+                startActivity(intent)
                 return true
             }
             R.id.eliminar_marca -> {
-                //Mostrar mensaje de Confirmacion
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle("Eliminar")
-                builder.setMessage("Seguro que desea eliminar el elemento")
-                builder.setPositiveButton(
-                    "Aceptar",
-                    DialogInterface.OnClickListener { dialog, which ->
-                        //Eliminar el archivo
-                        ESqliteHelper(this).eliminarMarcaFormulario(idItemSeleccionado)
-                    }
-                )
-                builder.setNegativeButton(
-                    "Cancelar",
-                    null
-                )
-
+                mostrarAlerta()
                 return true
             }
             R.id.ver_autos -> {
@@ -103,7 +93,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     fun mostrarAlerta(){
+        //Crear arreglo
+        val arreglo = ESqliteHelper(this).consultarElementos()
         //Mostrar mensaje de Confirmacion
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Seguro que desea eliminar")
@@ -111,13 +104,20 @@ class MainActivity : AppCompatActivity() {
             "Aceptar",
             DialogInterface.OnClickListener{dialog, which ->
                 //Eliminar el archivo
-                ESqliteHelper(this).eliminarMarcaFormulario(idItemSeleccionado)
+                ESqliteHelper(this).eliminarMarcaFormulario(arreglo[idItemSeleccionado].idMarca)
+                irActividad(MainActivity::class.java)
             }
         )
         builder.setNegativeButton(
             "Cancelar",
             null
         )
+        val dialogo = builder.create()
+        dialogo.show()
+    }
+
+    override fun onMenuItemClick(item: MenuItem): Boolean {
+        TODO("Not yet implemented")
     }
 }
 

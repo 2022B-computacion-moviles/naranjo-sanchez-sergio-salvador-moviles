@@ -77,7 +77,7 @@ class ESqliteHelper (
         val resultadoEliminacion = conexionEscritura
             .delete(
                 "tablaMarca", // TABLA
-                "id=?", //  id=? and nombre=? Where (podemos mandar parametros en orden)
+                "idMarca=?", //  id=? and nombre=? Where (podemos mandar parametros en orden)
                 arrayOf( // Arreglo parametros en orden [1,"Adrian"]
                     id.toString()
                 )
@@ -91,7 +91,7 @@ class ESqliteHelper (
         pais: String,
         fundacion: Int,
         creador: String,
-        idActualizar: Int
+        idMarca: Int
     ): Boolean {
         val conexionEscritura = writableDatabase
         val valoresAActualizar = ContentValues()
@@ -104,9 +104,9 @@ class ESqliteHelper (
             .update(
                 "tablaMarca", // Nombre tabla
                 valoresAActualizar,  // Valores a actualizar
-                "id=?", // Clausula Where
+                "idMarca=?", // Clausula Where
                 arrayOf(
-                    idActualizar.toString()
+                    idMarca.toString()
                 ) // Parametros clausula Where
             )
         conexionEscritura.close()

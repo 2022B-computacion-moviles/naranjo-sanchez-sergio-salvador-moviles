@@ -23,7 +23,7 @@ class BAuto(
     }
 
     override fun toString(): String {
-        return "${modelo}  - ${precio}"
+        return "${modelo} - ${precio}"
     }
 
     override fun describeContents(): Int {

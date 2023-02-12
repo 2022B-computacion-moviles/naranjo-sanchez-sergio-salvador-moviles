@@ -21,7 +21,7 @@ open class BMarca(
     }
 
     override fun toString(): String {
-        return "${nombre}  - ${pais}"
+        return "${nombre} - ${pais} - ${fundacion} - ${creador}"
     }
 
     override fun describeContents(): Int {
