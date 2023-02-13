@@ -93,6 +93,7 @@ class ESqliteHelper (
         creador: String,
         idMarca: Int
     ): Boolean {
+        println("Entra a actulizar: ${nombre} ${pais} ${fundacion} ${creador} ${idMarca}")
         val conexionEscritura = writableDatabase
         val valoresAActualizar = ContentValues()
         valoresAActualizar.put("nombre", nombre)

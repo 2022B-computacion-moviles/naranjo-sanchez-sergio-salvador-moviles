@@ -1,5 +1,6 @@
 package com.example.movcompnssd1
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -22,14 +23,18 @@ class EditarMarca : AppCompatActivity() {
                 val pais = findViewById<EditText>(R.id.et_pais_marca)
                 val fundacion = findViewById<EditText>(R.id.et_anio_marca)
                 val creador = findViewById<EditText>(R.id.et_creador_marca)
-                println("Datos ${nombre.text.toString()} ${pais.text.toString()} ${fundacion.text.toString().toInt()} ${creador.text.toString()}")
-                BaseDeDatos.tablaMarca!!.actualizarMarcaFormulario(
+                println("Datos ${nombre.text.toString()} ${pais.text.toString()} ${fundacion.text.toString().toInt()} ${creador.text.toString()} ${idMarca}")
+                ESqliteHelper(this).actualizarMarcaFormulario(
                     nombre.text.toString(),
                     pais.text.toString(),
                     fundacion.text.toString().toInt(),
                     creador.text.toString(),
                     idMarca as Int
                 )
+
+                val intent = Intent(this@EditarMarca, MainActivity::class.java)
+                //Iniciar Editar
+                startActivity(intent)
             }
     }
 }

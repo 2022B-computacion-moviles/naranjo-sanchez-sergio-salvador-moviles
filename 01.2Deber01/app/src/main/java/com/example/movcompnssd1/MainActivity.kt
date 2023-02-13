@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         //Crear arreglo
         val arreglo = ESqliteHelper(this).consultarElementos()
+        println("Datos: ${arreglo}")
         return when (item.itemId) {
             R.id.editar_marca -> {
                 println("Estoy aqui en Editar Marca")
