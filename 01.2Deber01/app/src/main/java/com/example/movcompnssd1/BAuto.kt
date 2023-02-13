@@ -5,12 +5,12 @@ import android.os.Parcelable
 import java.time.LocalDate
 
 class BAuto(
-    private var idAuto: Int, //Propiedad
-    private var modelo: String,
-    private var cilindraje: Double,
-    private var precio: Double,
-    private var disponible: Int,
-    private var idMarca: Int
+    public var idAuto: Int, //Propiedad
+    public var modelo: String,
+    public var cilindraje: Double,
+    public var precio: Double,
+    public var disponible: Int,
+    public var idMarca: Int
 ): Parcelable{
     constructor(parcel: Parcel): this(
         parcel.readInt(),
@@ -23,7 +23,7 @@ class BAuto(
     }
 
     override fun toString(): String {
-        return "${modelo} - ${precio}"
+        return "${modelo} - \$${precio} - ${cilindraje}"
     }
 
     override fun describeContents(): Int {

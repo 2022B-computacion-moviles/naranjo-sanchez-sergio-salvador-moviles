@@ -1,5 +1,6 @@
 package com.example.movcompnssd1
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AlertDialog
 class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
     var idItemSeleccionado = 0
     var idNombre = ""
+    @SuppressLint("MissingInflatedId")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,11 +37,15 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
         listView.adapter = adaptador
         adaptador.notifyDataSetChanged()
 
-        //Meno desplegable
+        //Menu desplegable
         registerForContextMenu(listView)
 
-        //llamadas a los botones
-
+        //llamada al boton crear marca
+        val botonCrearMarca = findViewById<Button>(R.id.btn_crear_marca)
+        botonCrearMarca
+            .setOnClickListener{
+                irActividad(CrearMarca::class.java)
+            }
     }
     //funcion ir a actividad
     fun irActividad(
@@ -87,7 +93,10 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
                 return true
             }
             R.id.ver_autos -> {
-                "${idItemSeleccionado}"
+                val intent = Intent(this@MainActivity, VerAutosMarca::class.java)
+                intent.putExtra("idMarca", arreglo[idItemSeleccionado].idMarca)
+                //Iniciar Editar
+                startActivity(intent)
                 return true
             }
             else -> super.onContextItemSelected(item)
@@ -119,6 +128,11 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
 
     override fun onMenuItemClick(item: MenuItem): Boolean {
         TODO("Not yet implemented")
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        irActividad(MainActivity::class.java)
     }
 }
 

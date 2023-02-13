@@ -27,12 +27,13 @@ class ESqliteHelper (
             """.trimIndent()
         db?.execSQL(scriptSQLCrearTablaMarca)
         val scriptSQLCrearTablaAuto = """
-                CREATE TABLE AUTO(
+                CREATE TABLE tablaAuto(
                 idAuto INTEGER PRIMARY KEY AUTOINCREMENT,
                 modelo VARCHAR(100),
                 cilindraje DOUBLE,
                 precio DOUBLE,
-                disponible VARCHAR(100)
+                disponible INTEGER,
+                idMarca INTEGER
                 )                        
         """.trimIndent()
         db?.execSQL(scriptSQLCrearTablaAuto)
@@ -46,6 +47,28 @@ class ESqliteHelper (
             ("Renault", "Francia", 1898,"Louis Renault");
         """.trimIndent()
         db?.execSQL(scripIngrsarMarcas)
+
+        val scriptIngresarAutos = """
+            INSERT INTO tablaAuto (modelo, cilindraje, precio, disponible, idMarca)
+            VALUES ("Sail", 1.4, 17000.50, 1, 1),
+            ("Cerato", 2.0, 21000.90, 1, 1),
+            ("6", 2.5, 43999.99, 0, 1),
+            ("CX-3", 2.7, 24999.99, 0, 1),
+            ("CLIO E-TECH", 2.0, 19873.78, 0, 2),
+            ("Cerato", 2.0, 21000.90, 1, 2),
+            ("6", 2.5, 43999.99, 0, 2),
+            ("CX-3", 2.7, 24999.99, 0, 2),
+            ("Cerato", 2.0, 21000.90, 1, 3),
+            ("6", 2.5, 43999.99, 1, 3),
+            ("CX-3", 2.7, 24999.99, 0, 3),
+            ("Cerato", 2.0, 21000.90, 1, 4),
+            ("6", 2.5, 43999.99, 0, 4),
+            ("CX-3", 2.7, 24999.99, 1, 4),
+            ("6", 2.5, 43999.99, 1, 5),
+            ("CX-3", 2.7, 24999.99, 1, 5),
+            ("CLIO E-TECH", 2.0, 19873.78, 0, 5)
+        """.trimIndent()
+        db?.execSQL(scriptIngresarAutos)
 
     }
 
@@ -64,7 +87,33 @@ class ESqliteHelper (
 
         val resultadoGuardar = basedatosEscritura
             .insert(
-                "Marca", // Tabla
+                "tablaMarca", // Tabla
+                null, //
+                valoresAGuardar // valores
+            )
+        basedatosEscritura.close()
+        return if (resultadoGuardar.toInt() == -1) false else true
+    }
+
+    fun crearAuto(
+        modelo: String,
+        cilindraje: Double,
+        precio: Double,
+        disponible: Int,
+        idMarca: Int
+    ): Boolean{
+        val basedatosEscritura = writableDatabase
+        val valoresAGuardar = ContentValues()
+
+        valoresAGuardar.put("modelo", modelo)
+        valoresAGuardar.put("cilindraje", cilindraje)
+        valoresAGuardar.put("precio", precio)
+        valoresAGuardar.put("disponible", disponible)
+        valoresAGuardar.put("idMarca", idMarca)
+
+        val resultadoGuardar = basedatosEscritura
+            .insert(
+                "tablaAuto", // Tabla
                 null, //
                 valoresAGuardar // valores
             )
@@ -86,6 +135,20 @@ class ESqliteHelper (
         return if (resultadoEliminacion.toInt() == -1) false else true
     }
 
+    fun eliminarAutoMarca(id: Int): Boolean{
+        val conexionEscritura = writableDatabase
+        val resultadoEliminacion = conexionEscritura
+            .delete(
+                "tablaAuto", // TABLA
+                "idAuto=?", //  id=? and nombre=? Where (podemos mandar parametros en orden)
+                arrayOf( // Arreglo parametros en orden [1,"Adrian"]
+                    id.toString()
+                )
+            )
+        conexionEscritura.close()
+        return if (resultadoEliminacion.toInt() == -1) false else true
+    }
+
     fun actualizarMarcaFormulario(
         nombre: String,
         pais: String,
@@ -93,7 +156,6 @@ class ESqliteHelper (
         creador: String,
         idMarca: Int
     ): Boolean {
-        println("Entra a actulizar: ${nombre} ${pais} ${fundacion} ${creador} ${idMarca}")
         val conexionEscritura = writableDatabase
         val valoresAActualizar = ContentValues()
         valoresAActualizar.put("nombre", nombre)
@@ -108,6 +170,30 @@ class ESqliteHelper (
                 "idMarca=?", // Clausula Where
                 arrayOf(
                     idMarca.toString()
+                ) // Parametros clausula Where
+            )
+        conexionEscritura.close()
+        return if (resultadoActualizacion == -1) false else true
+    }
+
+    fun actualizarAutoFormulario(
+        modelo: String,
+        cilindraje: Double,
+        precio: Double,
+        idAuto: Int
+    ): Boolean{
+        val conexionEscritura = writableDatabase
+        val valoresAActualizar = ContentValues()
+        valoresAActualizar.put("modelo", modelo)
+        valoresAActualizar.put("cilindraje", cilindraje)
+        valoresAActualizar.put("precio", precio)
+        val resultadoActualizacion = conexionEscritura
+            .update(
+                "tablaAuto", // Nombre tabla
+                valoresAActualizar,  // Valores a actualizar
+                "idAuto=?", // Clausula Where
+                arrayOf(
+                    idAuto.toString()
                 ) // Parametros clausula Where
             )
         conexionEscritura.close()
@@ -161,6 +247,33 @@ class ESqliteHelper (
                     resultadoConsultaLectura.getString(2),
                     resultadoConsultaLectura.getInt(3),
                     resultadoConsultaLectura.getString(4)
+                ))
+            }while (resultadoConsultaLectura.moveToNext())
+        }
+
+        resultadoConsultaLectura.close()
+
+        return lista
+    }
+
+
+    fun autosMarca(id: Int): ArrayList<BAuto>{
+        val baseDatosLectura = readableDatabase
+        val scriptConsultarAutos = "SELECT * FROM tablaAuto WHERE idMarca=${id}"
+        val resultadoConsultaLectura = baseDatosLectura.rawQuery(
+            scriptConsultarAutos,
+            null
+        )
+        var lista = ArrayList<BAuto>()
+        if (resultadoConsultaLectura.moveToFirst()){
+            do {
+                lista.add(BAuto(
+                    resultadoConsultaLectura.getInt(0),
+                    resultadoConsultaLectura.getString(1),
+                    resultadoConsultaLectura.getDouble(2),
+                    resultadoConsultaLectura.getDouble(3),
+                    resultadoConsultaLectura.getInt(4),
+                    resultadoConsultaLectura.getInt(5)
                 ))
             }while (resultadoConsultaLectura.moveToNext())
         }

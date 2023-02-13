@@ -10,7 +10,7 @@ class EditarMarca : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_marca)
-        val arreglo = ESqliteHelper(this).consultarElementos()
+        //val arreglo = ESqliteHelper(this).consultarElementos()
         //Recivir datos
         val idMarca = intent.extras?.getInt("idMarca")?: "No encontrado"
         println("Marca a actualizar: ${idMarca}")
