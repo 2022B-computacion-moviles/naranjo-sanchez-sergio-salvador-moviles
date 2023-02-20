@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--ScrollView
+Permite desplazarse por  la jerarqui de las vistas colocada dentro de el.
+-->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_color"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/back_color">
+
+        <!-- Se despliega un saludo-->
+        <TextView
+            android:id="@+id/idTVGreetHeading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            android:text="Bienvenido"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Campo de busqueda -->
+        <TextView
+            android:id="@+id/idTVSearchHeading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idTVGreetHeading"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:padding="10dp"
+            android:text="Buscar"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Texto de buscar-->
+        <EditText
+            android:id="@+id/idEdtSearch"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/idTVSearchHeading"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white"
+            android:hint="Albums, Artistas"
+            android:imeOptions="actionDone"
+            android:lines="1"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColorHint="#A1887F"
+            android:textStyle="bold" />
+
+        <!-- TExt view que despliega cabecera-->
+        <TextView
+            android:id="@+id/idTVHeading1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idEdtSearch"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:padding="10dp"
+            android:text="Recomendacion del dia"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Recycler view-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/idRVAlbums"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idTVHeading1"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/album_rv_item" />
+        <!-- Aqui se llama al layout de cada album-->
+
+        <!-- Text view para desplegar albums en trend-->
+        <TextView
+            android:id="@+id/idTVHeading2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idRVAlbums"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:padding="10dp"
+            android:text="Populares Ahora!"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Recicler view para albums populares-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/idRVPopularAlbums"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idTVHeading2"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/album_rv_item" />
+
+        <!-- Textview [ara tendencias-->
+        <TextView
+            android:id="@+id/idTVHeading3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idRVPopularAlbums"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:padding="10dp"
+            android:text="En Tendencia Ahora!"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Recycler view para tendencias-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/idRVTrendingAlbums"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idTVHeading3"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/album_rv_item" />
+
+    </RelativeLayout>
+
+</ScrollView>
