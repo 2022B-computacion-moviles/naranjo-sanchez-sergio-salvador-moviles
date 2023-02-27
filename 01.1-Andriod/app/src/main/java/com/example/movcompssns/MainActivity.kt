@@ -100,6 +100,11 @@ class MainActivity : AppCompatActivity() {
             .setOnClickListener{
                 irActividad(IFirebaseAuth::class.java)
             }
+        val botonFiretore = findViewById<Button>(R.id.btn_intent_firestore)
+        botonFiretore
+            .setOnClickListener{
+                irActividad(JFirebaseFirestore::class.java)
+            }
     }
 
     //launch para parametros

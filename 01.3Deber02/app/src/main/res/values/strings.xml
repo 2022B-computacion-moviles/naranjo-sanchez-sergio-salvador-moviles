@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MovCompNSSD2</string>
+    <string name="recomendacion_del_dia">Recomendacion del dia</string>
+    <string name="albums_artistas">Albums, Artistas</string>
+    <string name="buscar">Buscar</string>
+    <string name="bienvenido">Bienvenido</string>
+    <string name="populares_ahora">Populares Ahora</string>
+    <string name="en_tendencia_ahora">En Tendencia Ahora!</string>
+    <string name="recommended_for_today">Recommended for Today</string>
 </resources>

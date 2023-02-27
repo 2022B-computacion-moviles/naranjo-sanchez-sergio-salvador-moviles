@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--ScrollView
-Permite desplazarse por  la jerarqui de las vistas colocada dentro de el.
--->
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -16,22 +13,19 @@ Permite desplazarse por  la jerarqui de las vistas colocada dentro de el.
         android:layout_height="wrap_content"
         android:background="@color/back_color">
 
-        <!-- Se despliega un saludo-->
+        <!-- text view to display greeting-->
         <TextView
             android:id="@+id/idTVGreetHeading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_margin="10dp"
             android:padding="10dp"
-            android:text="Bienvenido"
+            android:text="Good afternoon"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <!-- Campo de busqueda -->
+        <!-- text view to display search heading-->
         <TextView
             android:id="@+id/idTVSearchHeading"
             android:layout_width="match_parent"
@@ -40,12 +34,12 @@ Permite desplazarse por  la jerarqui de las vistas colocada dentro de el.
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:padding="10dp"
-            android:text="Buscar"
+            android:text="Search"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <!-- Texto de buscar-->
+        <!-- edit text to search songs-->
         <EditText
             android:id="@+id/idEdtSearch"
             android:layout_width="match_parent"
@@ -56,7 +50,7 @@ Permite desplazarse por  la jerarqui de las vistas colocada dentro de el.
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             android:background="@color/white"
-            android:hint="Albums, Artistas"
+            android:hint="Artists,songs or podcasts"
             android:imeOptions="actionDone"
             android:lines="1"
             android:padding="10dp"
@@ -64,7 +58,7 @@ Permite desplazarse por  la jerarqui de las vistas colocada dentro de el.
             android:textColorHint="#A1887F"
             android:textStyle="bold" />
 
-        <!-- TExt view que despliega cabecera-->
+        <!-- text view to display heading-->
         <TextView
             android:id="@+id/idTVHeading1"
             android:layout_width="match_parent"
@@ -73,28 +67,24 @@ Permite desplazarse por  la jerarqui de las vistas colocada dentro de el.
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:padding="10dp"
-            android:text="Recomendacion del dia"
+            android:text="@string/recommended_for_today"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <!-- Recycler view-->
+        <!-- recycler view for various albums-->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/idRVAlbums"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/idTVHeading1"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_margin="4dp"
             android:orientation="horizontal"
             android:padding="4dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/album_rv_item" />
-        <!-- Aqui se llama al layout de cada album-->
 
-        <!-- Text view para desplegar albums en trend-->
+        <!-- text view to display heading-->
         <TextView
             android:id="@+id/idTVHeading2"
             android:layout_width="match_parent"
@@ -103,27 +93,24 @@ Permite desplazarse por  la jerarqui de las vistas colocada dentro de el.
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:padding="10dp"
-            android:text="Populares Ahora!"
+            android:text="Popular Albums"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <!-- Recicler view para albums populares-->
+        <!-- recycler view for popular albums-->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/idRVPopularAlbums"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/idTVHeading2"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_margin="4dp"
             android:orientation="horizontal"
             android:padding="4dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/album_rv_item" />
 
-        <!-- Textview [ara tendencias-->
+        <!-- text view to display heading-->
         <TextView
             android:id="@+id/idTVHeading3"
             android:layout_width="match_parent"
@@ -132,21 +119,18 @@ Permite desplazarse por  la jerarqui de las vistas colocada dentro de el.
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:padding="10dp"
-            android:text="En Tendencia Ahora!"
+            android:text="Trending now"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <!-- Recycler view para tendencias-->
+        <!-- recycler view for various albums-->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/idRVTrendingAlbums"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/idTVHeading3"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_margin="4dp"
             android:orientation="horizontal"
             android:padding="4dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
