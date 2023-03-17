@@ -2,17 +2,16 @@ package com.example.movcompnssd1
 
 import android.os.Parcel
 import android.os.Parcelable
-import java.time.LocalDate
 
 open class BMarca(
-    public var idMarca: Int, //Propiedad
+    public var idMarca: String, //Propiedad
     public var nombre: String,
     public var pais: String,
     public var fundacion: Int,
     public var creador: String
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readInt(),
+        parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readInt(),
@@ -29,7 +28,7 @@ open class BMarca(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(idMarca)
+        parcel.writeString(idMarca)
         parcel.writeString(nombre)
         parcel.writeString(pais)
         parcel.writeInt(fundacion)

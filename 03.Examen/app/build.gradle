@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-    namespace 'com.example.movcompnssd1'
+    namespace 'com.example.movcompssnex2b'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.movcompnssd1"
+        applicationId "com.example.movcompssnex2b"
         minSdk 24
-        targetSdk 33
+        targetSdk 32
         versionCode 1
         versionName "1.0"
 
@@ -35,17 +35,15 @@ android {
 }
 
 dependencies {
-
-    // FIREBASE:
-    implementation platform('com.google.firebase:firebase-bom:31.1.0')
-    // Firestore
-    implementation 'com.google.firebase:firebase-firestore-ktx'
-    implementation 'com.google.firebase:firebase-firestore:23.0.4'
+    //firebase
+    implementation platform('com.google.firebase:firebase-bom:31.2.3')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

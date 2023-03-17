@@ -210,15 +210,15 @@ class ESqliteHelper (
             )
         )
         val existeUsuario = resultadoConsultaLectura.moveToFirst()
-        val usuarioEncontrado = BMarca(0, "", "",0,"")
+        val usuarioEncontrado = BMarca("0", "", "",0,"")
         // LOGICA OBTENER EL USUARIO
         do {
-            val id = resultadoConsultaLectura.getInt(0) // columna indice 0 -> ID
+            val id = resultadoConsultaLectura.getString(0) // columna indice 0 -> ID
             val nombre = resultadoConsultaLectura.getString(1) // Columna indice 1 -> NOMBRE
             val pais = resultadoConsultaLectura.getString(2) // Columna indice 2 -> DESCRIPCION
             val fundacion = resultadoConsultaLectura.getInt(3)
             val creador = resultadoConsultaLectura.getString(4)
-            if (id != null) {
+            if (id !== null) {
                 usuarioEncontrado.idMarca = id
                 usuarioEncontrado.nombre = nombre
                 usuarioEncontrado.pais = pais
@@ -242,7 +242,7 @@ class ESqliteHelper (
         if (resultadoConsultaLectura.moveToFirst()){
             do {
                 lista.add(BMarca(
-                    resultadoConsultaLectura.getInt(0),
+                    resultadoConsultaLectura.getString(0),
                     resultadoConsultaLectura.getString(1),
                     resultadoConsultaLectura.getString(2),
                     resultadoConsultaLectura.getInt(3),

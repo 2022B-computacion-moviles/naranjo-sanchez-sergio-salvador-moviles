@@ -1,11 +1,17 @@
 package com.example.movcompnssd1
 
+import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.tasks.await
 
 class FireStoreManager {
+    //val FirebaseApp.inicializeApp(this)
+    val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
-
-    private val db = FirebaseFirestore.getInstance()
 
     //Agregar Marca
     fun agregarMarca(datos: Map<String, Any>, callback: (Boolean) -> Unit) {
@@ -44,19 +50,31 @@ class FireStoreManager {
             }
     }
     //Traer la lista de Marcas
-    fun obtenerMarcas(callback: (List<Map<String, Any>>) -> Unit) {
-        db.collection("concesionario")
-            .get()
-            .addOnSuccessListener { result ->
-                val concesionarios = mutableListOf<Map<String, Any>>()
-                for (concesionario in result) {
-                    concesionarios.add(concesionario.data)
+    fun obtenerMarcas(): List<BMarca> {
+        val db = Firebase.firestore
+        val query = db.collection("concesionario")
+        val completableDeferred = CompletableDeferred<List<BMarca>>()
+
+        query.get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val marcas = mutableListOf<BMarca>()
+                for (marca in task.result!!) {
+                    val usuarioEncontrado = BMarca("0", "", "",0,"")
+                    val data = marca.data
+                    usuarioEncontrado.idMarca = data["id"] as String
+                    usuarioEncontrado.nombre = data["nombre"] as String
+                    usuarioEncontrado.pais = data["pais"] as String
+                    usuarioEncontrado.fundacion = data["fundacion"] as Int
+                    usuarioEncontrado.creador = data["creador"] as String
+                    marcas.add(usuarioEncontrado)
                 }
-                callback(concesionarios)
+                completableDeferred.complete(marcas)
+            } else {
+                completableDeferred.complete(emptyList())
             }
-            .addOnFailureListener { exception ->
-                callback(emptyList())
-            }
+        }
+
+        return runBlocking { completableDeferred.await() }
     }
 
     //AUTOS

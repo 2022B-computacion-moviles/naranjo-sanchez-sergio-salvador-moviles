@@ -13,19 +13,22 @@ import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import com.google.firebase.FirebaseApp
 
 class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
     var idItemSeleccionado = 0
     var idNombre = ""
+    //Instanciar la base de datos
+    val dbManager = FireStoreManager()
     @SuppressLint("MissingInflatedId")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //Crear lista
 
         //Llamada a la lista marcas
-        val arreglo = ESqliteHelper(this).consultarElementos()
+        //val arreglo = ESqliteHelper(this).consultarElementos()
+        val arreglo = dbManager.obtenerMarcas()
         //Menu de cada marca
 
         val listView = findViewById<ListView>(R.id.lv_list_view_entrenador)
@@ -114,7 +117,7 @@ class MainActivity : AppCompatActivity(), MenuItem.OnMenuItemClickListener {
             "Aceptar",
             DialogInterface.OnClickListener{dialog, which ->
                 //Eliminar el archivo
-                ESqliteHelper(this).eliminarMarcaFormulario(arreglo[idItemSeleccionado].idMarca)
+                //ESqliteHelper(this).eliminarMarcaFormulario(arreglo[idItemSeleccionado].idMarca)
                 irActividad(MainActivity::class.java)
             }
         )

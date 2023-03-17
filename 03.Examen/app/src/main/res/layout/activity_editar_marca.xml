@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".editar_Marca">
+    <EditText
+        android:id="@+id/input_actualizar_nombre"
+        android:layout_width="339dp"
+        android:layout_height="65dp"
+        android:ems="10"
+        android:hint="Ingrese el nombre"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.158" />
+
+    <EditText
+        android:id="@+id/input_actualizar_pais"
+        android:layout_width="339dp"
+        android:layout_height="65dp"
+        android:ems="10"
+        android:hint="Ingrese pais de la Marca"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/input_actualizar_nombre"
+        app:layout_constraintStart_toStartOf="@+id/input_actualizar_nombre"
+        app:layout_constraintTop_toBottomOf="@+id/input_actualizar_nombre" />
+
+    <EditText
+        android:id="@+id/input_actualizar_fundacion"
+        android:layout_width="339dp"
+        android:layout_height="65dp"
+        android:ems="10"
+        android:hint="Año de fundacion"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/input_actualizar_pais"
+        app:layout_constraintStart_toStartOf="@+id/input_actualizar_pais"
+        app:layout_constraintTop_toBottomOf="@+id/input_actualizar_pais" />
+
+    <EditText
+        android:id="@+id/input_actualizar_creador"
+        android:layout_width="339dp"
+        android:layout_height="65dp"
+        android:ems="10"
+        android:hint="Nombre del creador"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/input_actualizar_fundacion"
+        app:layout_constraintStart_toStartOf="@+id/input_actualizar_fundacion"
+        app:layout_constraintTop_toBottomOf="@+id/input_actualizar_fundacion" />
+
+    <Button
+        android:id="@+id/button_actualizar_marca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Actualizar"
+        app:layout_constraintEnd_toEndOf="@+id/input_actualizar_creador"
+        app:layout_constraintStart_toStartOf="@+id/input_actualizar_creador"
+        app:layout_constraintTop_toBottomOf="@+id/input_actualizar_creador" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Editar Marca"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/input_actualizar_nombre"
+        app:layout_constraintEnd_toEndOf="@+id/input_actualizar_nombre"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/input_actualizar_nombre"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.877" />
+</androidx.constraintlayout.widget.ConstraintLayout>
