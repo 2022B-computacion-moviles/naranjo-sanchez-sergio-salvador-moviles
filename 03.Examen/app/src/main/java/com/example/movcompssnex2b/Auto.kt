@@ -1,7 +1,7 @@
 package com.example.movcompssnex2b
 
 class Auto (
-        var idAuto: Int, //Propiedad
+        var idAuto: String, //Propiedad
         var modelo: String,
         var cilindraje: Double,
         var precio: Double,
