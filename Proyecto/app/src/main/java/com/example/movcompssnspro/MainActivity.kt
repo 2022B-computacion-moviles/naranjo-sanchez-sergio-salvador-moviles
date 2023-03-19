@@ -50,7 +50,14 @@ class MainActivity : AppCompatActivity() {
         btnLogin.setOnClickListener{enviarIntentLogin()}
         btnLogout.setOnClickListener{logout()}
 
+        val BotonCarrito = findViewById<Button>(R.id.button_irCarrito)
+        BotonCarrito
+            .setOnClickListener{
+                irActividad(Carrito::class.java)
+            }
+
     }
+
     fun irActividad(
         clase: Class<*>
     ) {
