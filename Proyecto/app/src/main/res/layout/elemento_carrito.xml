@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="5dp">
+
+    <LinearLayout
+        android:layout_width="413dp"
+        android:layout_height="106dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.221">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="26dp"
+            android:layout_height="86dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/Papeleria" />
+
+
+        <LinearLayout
+            android:layout_width="116dp"
+            android:layout_height="88dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_nombre_Producto"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:text="Nombre del Producto"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#020202"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="191dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+
+                <ImageButton
+                    android:id="@+id/imageButton_aumentar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:contentDescription="Aniadir"
+                    app:srcCompat="@drawable/ic_baseline_add_24"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/textView_cantidad_Producto"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/imageButton_disminuir"
+                    android:layout_width="36dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:contentDescription="Disminuir"
+                    app:srcCompat="@drawable/ic_baseline_minimize_24"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="29dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_precioTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView_PrecioUnitario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0c/u"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButton_eliminar"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:layout_marginTop="25dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:contentDescription="Disminuir"
+            app:srcCompat="@drawable/ic_baseline_delete_24"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

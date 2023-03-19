@@ -7,11 +7,11 @@
     tools:context=".Contacto">
 
     <ScrollView
-        android:layout_width="334dp"
-        android:layout_height="971dp"
+        android:layout_width="361dp"
+        android:layout_height="502dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -203,6 +203,7 @@
                     android:textSize="14sp"
                     android:textStyle="bold"
                     tools:ignore="TouchTargetSizeCheck" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -232,6 +233,7 @@
                     android:textSize="14sp"
                     android:textStyle="bold"
                     tools:ignore="TouchTargetSizeCheck" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -254,7 +256,7 @@
                     android:id="@+id/input_mensaje"
                     android:layout_width="195dp"
                     android:layout_height="137dp"
-                    android:hint="Ingresa hasta 10 caracteres aquí"
+                    android:hint="Ingresa hasta 200 caracteres aquí"
                     android:maxLength="200"
                     android:textColor="#6A6060"
                     android:textSize="14sp"
